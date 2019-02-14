@@ -1,0 +1,713 @@
+<!DOCTYPE html><html lang="en"><head><title>Learn all languages</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style type="text/css">*,*::before,*::after{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}.container-fluid{max-width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}.container{width:98%;margin-right:auto;margin-left:auto}.row{flex-wrap:wrap;flex-direction:row;margin-bottom:15px}.position-fixed,position fixed,.col,.col-12,.col-xl-5,.col-xl-2,.col-md-3,.col-md-9{position:relative;width:100%;min-height:1px;padding-right:15px;padding-left:15px}.col{display:flex;flex-basis:0;flex-grow:1;max-width:100%}.col-12{flex:0 0 100%;max-width:100%}.justify-content-between{justify-content:space-between}.align-self-center{align-self:center}.pos-r{position:relative}.pos-a{position:absolute}.d-block{display:block}.d-flex{display:flex}.align-items-center{-ms-flex-align:center;align-items:center}.justify-content-center{justify-content:center}.justify-content-end{justify-content:flex-end}.text-center{text-align:center}.w-100{width:100%}@media (min-width:576px){.container{width:100%}}@media (min-width:768px){.container{width:90%}}.col-md-9{flex:0 0 75%;max-width:75%;}.col-md-9 .container{width:100%}@media (min-width:992px){.container{width:100%;max-width:960px}}@media (min-width:1200px){.container{max-width:80%}}html{height:100%}body{background:#1e1e1e;padding:0;margin:0;height:100%;font-size:22px}header{display:flex;justify-content:space-between;align-items:center;top:0;right:0;left:0;height:60px;color:#ccc;z-index:1;background-color:rgba(8,8,8,0.8)}#options{display:flex;flex-direction:column;justify-content:space-between;height:100%;width:60px;padding:20px 18px}#options:hover{background:#000;cursor:pointer}#options:hover .burger_line{background:#fff}.burger_line{height:2px;width:100%;background:#ccc}.player{display:flex;flex-direction:column;flex-grow:1;height:100%}#wrapButtonPlayer{display:flex;justify-content:center;height:70%}#wrapButtonPlayer *{height:100%;padding:3px 10px}#wrapButtonPlayer svg{fill:#ccc;}#wrapButtonPlayer svg:hover{fill:#fff;cursor:pointer}#rewind_play{display:none}#rewind{display:flex;margin:0 5%;width:90%;background:#222;height:30%;cursor:pointer}.rewind_item{display:flex;flex-grow:1;height:100%;background:#444;}.rewind_item:hover{background:#fff}#fullScreen,#closeFullScreen{height:100%;width:60px;padding:20px 18px;cursor:pointer;}#fullScreen:hover,#closeFullScreen:hover{background:#000;}#fullScreen:hover .fullScreen_icon,#closeFullScreen:hover .fullScreen_icon{border:solid 1px #fff;}#fullScreen:hover .fullScreen_icon .fullScreen_icon,#closeFullScreen:hover .fullScreen_icon .fullScreen_icon{border-top:solid 3px #fff}.fullScreen_icon{border:solid 1px #ccc;height:100%;width:100%;}.fullScreen_icon .fullScreen_icon{border-top:solid 3px #ccc;margin:5px 3px 2px 2px;height:68%;width:70%}#closeFullScreen{display:none;height:100%}.tag{color:#27c;white-space:pre}.class{color:#7df;white-space:pre}.text{color:#eee;white-space:pre}.body_menu{display:flex;height:100%}#body{display:flex;flex-wrap:wrap;padding-top:88px}#menu{display:none;margin-top:60px;padding-top:10px;padding-bottom:10px;color:#ccc;background:rgba(20,20,20,0.4)}.see{display:block !important}.menu_item,.menu_item_wrap{padding:5px 15px;cursor:pointer}.menu_item_wrap{display:flex;padding:0}.menu_item:hover{background:#000;color:#fff}</style></head><body id="full_screen"><header class="container-fluid pos-a d-flex"><div class="pos-r" id="options" onclick="menu_toggle()"><div class="burger_line"></div><div class="burger_line"></div><div class="burger_line"></div></div><div class="player" onclick="menu_off()"><div id="wrapButtonPlayer"><div id="rewind_back" onclick="back()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M8 256c0 137 111 248 248 248s248-111 248-248S393 8 256 8 8 119 8 256zm448 0c0 110.5-89.5 200-200 200S56 366.5 56 256 145.5 56 256 56s200 89.5 200 200zm-72-20v40c0 6.6-5.4 12-12 12H256v67c0 10.7-12.9 16-20.5 8.5l-99-99c-4.7-4.7-4.7-12.3 0-17l99-99c7.6-7.6 20.5-2.2 20.5 8.5v67h116c6.6 0 12 5.4 12 12z"/></svg></div><div id="rewind_pause" onclick="pause()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm96-280v160c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16zm-112 0v160c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16z"/></svg></div><div id="rewind_play" onclick="run()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256z"/></svg></div><div id="rewind_next" onclick="next()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256zm72 20v-40c0-6.6 5.4-12 12-12h116v-67c0-10.7 12.9-16 20.5-8.5l99 99c4.7 4.7 4.7 12.3 0 17l-99 99c-7.6 7.6-20.5 2.2-20.5-8.5v-67H140c-6.6 0-12-5.4-12-12z"/></svg></div></div><div id="rewind"></div></div><div id="fullScreen" onclick="Full_screen()"><div class="fullScreen_icon"></div></div><div id="closeFullScreen" onclick="Close_full_screen()"><div class="fullScreen_icon"><div class="fullScreen_icon"></div></div></div></header><div class="body_menu"><div id="menu"><div class="menu_item_wrap"><div class="menu_item">EN</div><div class="menu_item">RU</div></div><div class="menu_item">Language</div><div class="menu_item">Thems</div><div class="menu_item">Font size</div><div class="menu_item"></div><div class="menu_item">Support</div><div class="menu_item">Author</div></div><div class="container" id="body_wrap" onclick="menu_off()"><div id="body"></div></div></div></body><script>var language_HTML;
+
+language_HTML = {
+  slide1: {
+    see: {
+      col1: {
+        row1: [
+          [
+            {
+              tag: '1<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: 'Language HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ],
+        row2: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: 'Language HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ]
+      },
+      col2: {
+        row1: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: 'Language HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ]
+      }
+    },
+    time: 5000,
+    voice: 'sound.mp3'
+  },
+  slide2: {
+    see: {
+      col1: {
+        row1: [
+          [
+            {
+              tag: '2<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ],
+        row2: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ]
+      }
+    },
+    time: 5000,
+    voice: 'sound.mp3'
+  },
+  slide3: {
+    see: {
+      col1: {
+        row1: [
+          [
+            {
+              tag: '3<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ],
+        row2: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ]
+      }
+    },
+    time: 5000,
+    voice: 'sound.mp3'
+  },
+  slide4: {
+    see: {
+      col1: {
+        row1: [
+          [
+            {
+              tag: '4<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ],
+        row2: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ]
+      },
+      col2: {
+        row1: [
+          [
+            {
+              tag: '4<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ],
+        row2: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ]
+      },
+      col3: {
+        row1: [
+          [
+            {
+              tag: '4<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ],
+        row2: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ]
+      },
+      col4: {
+        row1: [
+          [
+            {
+              tag: '4<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ],
+        row2: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ],
+        row3: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ],
+        row4: [
+          [
+            {
+              tag: '<h1'
+            }
+          ],
+          [
+            {
+              class: ' class="className"'
+            }
+          ],
+          [
+            {
+              tag: ' >'
+            }
+          ],
+          [
+            {
+              text: ' HTML'
+            }
+          ],
+          [
+            {
+              tag: '</h1>'
+            }
+          ]
+        ]
+      }
+    },
+    time: 5000,
+    voice: 'sound.mp3'
+  },
+  slide5: {
+    see: {
+      col1: {
+        row1: [
+          [
+            {
+              tag: 'THE END'
+            }
+          ]
+        ]
+      }
+    },
+    time: 5000,
+    voice: 'sound.mp3'
+  }
+};
+var $, id;
+
+$ = function(selector) {
+  return document.querySelectorAll(selector);
+};
+
+id = function(selector) {
+  return document.getElementById(selector);
+};
+var menu, menu_off, menu_toggle, options;
+
+menu = id('menu');
+
+options = id('options');
+
+menu_toggle = function() {
+  console.log('toggle');
+  menu.classList.toggle('see');
+};
+
+menu_off = function() {
+  return menu.classList.remove('see');
+};
+var Close_full_screen, Full_screen, allSlides, allSlidesLength, back, block_full_screen, button_rewind, clearIntervalMini, closeFullScreen, fullScreen, i_b_r, key, next, numberBackSlide, numberNextSlide, parse_col, parse_row, parse_slide, pause, rewind, rewind_pause, rewind_play, run, setI, slider, time, val;
+
+allSlides = language_HTML;
+
+allSlidesLength = Object.keys(allSlides).length;
+
+slider = id('body');
+
+numberNextSlide = 1;
+
+numberBackSlide = 1;
+
+time = 4000;
+
+rewind = id('rewind');
+
+rewind_pause = id('rewind_pause');
+
+rewind_play = id('rewind_play');
+
+setI = setInterval(() => {
+  return run();
+}, time);
+
+//#####################################
+parse_slide = function(obj) {
+  var DOM_slide, key, val;
+  slider.innerHTML = '';
+  for (key in obj) {
+    val = obj[key];
+    DOM_slide = document.createElement('div');
+    DOM_slide.setAttribute('class', 'row');
+    slider.appendChild(parse_col(val, DOM_slide));
+  }
+};
+
+parse_col = function(obj, DOM_slide) {
+  var DOM_col, key, val;
+  for (key in obj) {
+    val = obj[key];
+    DOM_col = document.createElement('div');
+    DOM_col.setAttribute('class', 'col');
+    DOM_slide.appendChild(parse_row(val, DOM_col));
+  }
+  return DOM_slide;
+};
+
+parse_row = function(arr_obj, DOM_col) {
+  var div, i, key, len, ref, val;
+  for (i = 0, len = arr_obj.length; i < len; i++) {
+    val = arr_obj[i];
+    ref = val[0];
+    for (key in ref) {
+      val = ref[key];
+      div = document.createElement('div');
+      div.setAttribute('class', key);
+      div.textContent = val;
+      DOM_col.appendChild(div);
+    }
+  }
+  return DOM_col;
+};
+
+parse_slide(allSlides.slide1.see);
+
+//#####################################
+clearIntervalMini = function() {
+  clearInterval(setI);
+  return setI = setInterval(() => {
+    return next();
+  }, time);
+};
+
+next = function() {
+  var numberNextSlide_plus;
+  numberNextSlide_plus = numberNextSlide;
+  numberNextSlide_plus++;
+  if (numberNextSlide_plus <= allSlidesLength) {
+    numberNextSlide++;
+    return run();
+  }
+};
+
+run = function(number) {
+  if (number) {
+    numberNextSlide = number;
+  }
+  if (numberNextSlide <= allSlidesLength) {
+    if (numberNextSlide > 0) {
+      rewind_play.style.display = 'none';
+      rewind_pause.style.display = 'block';
+      clearIntervalMini();
+      return parse_slide(allSlides["slide" + numberNextSlide].see);
+    }
+  }
+};
+
+back = function() {
+  var numberNextSlide_minus;
+  numberNextSlide_minus = numberNextSlide;
+  numberNextSlide_minus--;
+  if (numberNextSlide_minus > 0) {
+    numberNextSlide--;
+    return run();
+  }
+};
+
+pause = function() {
+  clearInterval(setI);
+  rewind_pause.style.display = 'none';
+  return rewind_play.style.display = 'block';
+};
+
+i_b_r = 0;
+
+for (key in allSlides) {
+  val = allSlides[key];
+  i_b_r++;
+  button_rewind = document.createElement("div");
+  button_rewind.classList.add("rewind_item");
+  button_rewind.setAttribute("onclick", "run(" + i_b_r + ")");
+  rewind.appendChild(button_rewind);
+}
+
+block_full_screen = id('full_screen');
+
+fullScreen = id('fullScreen');
+
+closeFullScreen = id('closeFullScreen');
+
+Full_screen = function() {
+  fullScreen.style.display = 'none';
+  closeFullScreen.style.display = 'block';
+  if (block_full_screen.requestFullscreen) {
+    return block_full_screen.requestFullscreen();
+  } else {
+    if (block_full_screen.mozRequestFullScreen) {
+      return block_full_screen.mozRequestFullScreen();
+    } else {
+      if (block_full_screen.webkitRequestFullscreen) {
+        return block_full_screen.webkitRequestFullscreen();
+      } else {
+        if (block_full_screen.msRequestFullscreen) {
+          return block_full_screen.msRequestFullscreen();
+        }
+      }
+    }
+  }
+};
+
+Close_full_screen = function() {
+  closeFullScreen.style.display = 'none';
+  fullScreen.style.display = 'block';
+  if (document.exitFullscreen) {
+    return document.exitFullscreen();
+  } else {
+    if (document.mozCancelFullScreen) {
+      return document.mozCancelFullScreen();
+    } else {
+      if (document.webkitExitFullscreen) {
+        return document.webkitExitFullscreen();
+      } else {
+        if (document.msExitFullscreen) {
+          return document.msExitFullscreen();
+        }
+      }
+    }
+  }
+};
+
+
+</script></html>
