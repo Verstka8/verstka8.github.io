@@ -1,0 +1,9 @@
+HTML используетс€ дл€ разметки веб-сайтов вместе с CSS.
+“ег €вл€етс€ основным элементом форматировани€.
+јтрибут дает дополнительные возможности дл€ тега и форматировани€ текста.
+“екст отображаетс€ на сайте.
+
+HTML is used to mark up websites with CSS.
+The tag is the main element of formatting.
+The attribute provides additional options for tagging and text formatting.
+The text is displayed on the site.
