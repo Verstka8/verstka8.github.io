@@ -35,7 +35,7 @@ HTML_EN = [
         }
       ],
       voice: 'HTML_EN_html',
-      time: 5000
+      time: 6000
     }
   },
   {
@@ -116,7 +116,7 @@ HTML_EN = [
         }
       ],
       voice: 'HTML_EN_tag_attribute',
-      time: 11000
+      time: 12000
     }
   },
   {
