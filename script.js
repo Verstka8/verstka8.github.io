@@ -1,7 +1,7 @@
 //############################################
 // JQuery
 //############################################
-var $, Close_full_screen, Font_size, Full_screen, Lang_toggle, Language_active, Theme_dark, Theme_lite, allSlides, allSlidesLength, autoHover, back, clearIntervalMini, closeFullScreen, download_voice, fullScreen, full_screen, id, menu, menu_off, menu_toggle, next, numberNextSlide, options, parse_col, parse_row, parse_slide, pause, print, rewind, rewind_pause, rewind_play, run, run_language, setI, slider, time;
+var $, Close_full_screen, Font_size, Full_screen, Lang_toggle, Language_active, Theme_dark, Theme_lite, allSlides, allSlidesLength, autoHover, back, clearIntervalMini, closeFullScreen, download_voice, fullScreen, full_screen, id, lang_mod_var, menu, menu_off, menu_toggle, next, numberNextSlide, options, parse_col, parse_only, parse_row, parse_slide, pause, print, rewind, rewind_pause, rewind_play, run, run_language, setI, slider, time;
 
 $ = function(selector) {
   return document.querySelectorAll(selector);
@@ -24,6 +24,8 @@ full_screen = id('full_screen');
 
 options = id('options');
 
+lang_mod_var = 'EN';
+
 menu_toggle = function() {
   menu.classList.toggle('see');
 };
@@ -39,14 +41,14 @@ Theme_dark = function() {
   return id('Dark').classList.add('menu_item_active');
 };
 
+Theme_dark();
+
 Theme_lite = function() {
   full_screen.classList.remove('Theme_dark');
   full_screen.classList.add('Theme_lite');
   id('Dark').classList.remove('menu_item_active');
   return id('Light').classList.add('menu_item_active');
 };
-
-Theme_dark();
 
 //############################################
 // CORE
@@ -80,11 +82,15 @@ clearIntervalMini = function() {
 };
 
 //#####################################
-run_language = function(language) {
-  var button_rewind, i_b_r, key, results, val;
+run_language = function(lang) {
+  var button_rewind, globalStyle, i_b_r, key, results, val;
+  gEval('language = ' + lang + '_' + lang_mod_var);
   numberNextSlide = -1;
   allSlides = language;
   allSlidesLength = language.length;
+  globalStyle = document.createElement('style');
+  globalStyle.innerHTML = allSlides[0].slide.globalStyle;
+  menu.appendChild(globalStyle);
   time = 88;
   id('rewind').innerHTML = '';
   clearIntervalMini();
@@ -117,6 +123,8 @@ parse_slide = function(arr) {
     }
     if (Object.keys(val)[0] === 'line') {
       slider.appendChild(parse_row(val, DOM_slide));
+    } else {
+      slider.appendChild(parse_only(val, DOM_slide));
     }
   }
 };
@@ -161,6 +169,16 @@ parse_row = function(arr_obj, DOM_col) {
   return DOM_col;
 };
 
+parse_only = function(obj, DOM_slide) {
+  var DOM_col, key, val;
+  for (key in obj) {
+    val = obj[key];
+    DOM_col = document.createElement('div');
+    DOM_col.setAttribute('class', Object.keys(key)[0]);
+  }
+  return DOM_slide;
+};
+
 //#####################################
 next = function() {
   var allSlidesLength__;
@@ -183,7 +201,6 @@ download_voice = function(numberSlideVoice) {
 };
 
 run = function(number) {
-  console.log(number);
   number++;
   if (number) {
     number--;
@@ -198,14 +215,16 @@ run = function(number) {
       // console.log allSlides[numberNextSlide].slide.time
       parse_slide(allSlides[numberNextSlide].slide.see);
       autoHover(numberNextSlide);
+      download_voice(numberNextSlide);
       if (this_voice) {
         this_voice.stop();
       }
       gEval('this_voice = ' + allSlides[numberNextSlide].slide.voice);
       if (this_voice) {
-        this_voice.play();
+        setTimeout(() => {
+          return this_voice.play();
+        }, 1000);
       }
-      download_voice(numberNextSlide);
     }
   }
 };
@@ -328,6 +347,7 @@ Lang_toggle = function(Lang) {
     Light: '光',
     Dark: '黑'
   };
+  lang_mod_var = Lang;
   Lang_apply = function(obj) {
     var key, results, val;
     results = [];
