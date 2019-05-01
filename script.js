@@ -1,7 +1,7 @@
 //############################################
 // JQuery
 //############################################
-var $, Close_full_screen, Font_size, Full_screen, Lang_toggle, Language_active, Theme_dark, Theme_lite, allSlides, allSlidesLength, autoHover, back, clearIntervalMini, closeFullScreen, download_voice, fullScreen, full_screen, id, lang_mod_var, menu, menu_off, menu_toggle, next, numberNextSlide, options, parse_col, parse_only, parse_row, parse_slide, pause, print, rewind, rewind_pause, rewind_play, run, run_language, setI, slider, time;
+var $, Close_full_screen, Font_size, Full_screen, Lang_toggle, Language_active, Theme_dark, Theme_lite, allSlides, allSlidesLength, autoHover, back, clearIntervalMini, closeFullScreen, download_voice, fullScreen, full_screen, id, lang_name_mod_var, menu, menu_off, menu_toggle, next, numberNextSlide, options, parse_col, parse_only, parse_row, parse_slide, pause, print, rewind, rewind_pause, rewind_play, run, run_language, setI, slider, time;
 
 $ = function(selector) {
   return document.querySelectorAll(selector);
@@ -24,7 +24,7 @@ full_screen = id('full_screen');
 
 options = id('options');
 
-lang_mod_var = 'EN';
+lang_name_mod_var = 'RU';
 
 menu_toggle = function() {
   menu.classList.toggle('see');
@@ -75,16 +75,15 @@ setI = setInterval(function() {
 
 clearIntervalMini = function() {
   clearInterval(setI);
-  setI = setInterval(function() {
+  return setI = setInterval(function() {
     return next();
   }, time);
-  return console.log(time);
 };
 
 //#####################################
-run_language = function(lang) {
+run_language = function(language) {
   var button_rewind, globalStyle, i_b_r, key, results, val;
-  gEval('language = ' + lang + '_' + lang_mod_var);
+  //gEval('language = ' + lang + '_' + lang_mod_var)
   numberNextSlide = -1;
   allSlides = language;
   allSlidesLength = language.length;
@@ -347,7 +346,7 @@ Lang_toggle = function(Lang) {
     Light: '光',
     Dark: '黑'
   };
-  lang_mod_var = Lang;
+  lang_name_mod_var = Lang;
   Lang_apply = function(obj) {
     var key, results, val;
     results = [];

@@ -33,7 +33,7 @@
         }
       ],
       voice: 'HTML_EN_html',
-      time: 6000
+      time: 5000
     }
   },
   {
