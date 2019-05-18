@@ -1,9 +1,34 @@
-HTML используется для разметки веб-сайтов вместе с CSS.
-Тег является основным элементом форматирования.
-Атрибут дает дополнительные возможности для тега и форматирования текста.
-Текст отображается на сайте.
+п»ї1) 
+	HTML РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ СЂР°Р·РјРµС‚РєРё РІРµР±-СЃР°Р№С‚РѕРІ РІРјРµСЃС‚Рµ СЃ CSS Рё JS.
 
-HTML is used to mark up websites with CSS.
-The tag is the main element of formatting.
-The attribute provides additional options for tagging and text formatting.
-The text is displayed on the site.
+2) Hello World
+3)
+	РўРµРі СЏРІР»СЏРµС‚СЃСЏ РѕСЃРЅРѕРІРЅС‹Рј СЌР»РµРјРµРЅС‚РѕРј СЂР°Р·РјРµС‚РєРё.
+	Р”РѕРїСѓСЃРєР°РµС‚СЃСЏ РІРєР»Р°РґС‹РІР°С‚СЊ РІ РїР°СЂРЅС‹Р№ С‚РµРі (РєРѕРЅС‚РµР№РЅРµСЂ) РґСЂСѓРіРёРµ С‚РµРіРё.
+	РђС‚СЂРёР±СѓС‚С‹ РїРѕР·РІРѕР»СЏСЋС‚ РёР·РјРµРЅСЏС‚СЊ СЃРІРѕР№СЃС‚РІР° Рё РїРѕРІРµРґРµРЅРёРµ СЌР»РµРјРµРЅС‚Р°.
+	РўРµРєСЃС‚ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РЅР° СЃР°Р№С‚Рµ.
+
+4) РўРёРїС‹ С‚РµРіРѕРІ
+	РўРµРіРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РЅР°Р·РІР°РЅРёСЏ РёРјРµСЋС‚ СЂР°Р·РЅС‹Р№ С„СѓРЅРєС†РёРѕРЅР°Р».
+
+
+
+
+--------------------------- EN -----------------------------------------
+
+1) HTML is used to mark up websites with CSS.
+
+2)* The tag is the main element of formatting.
+	The attribute provides additional options for tagging and text formatting.
+	The text is displayed on the site.
+
+
+
+<html>
+    <head>
+        <title>title</title>
+    </head>
+    <body>
+        <div>РџСЂРёРІРµС‚ РјРёСЂ</div>
+	  </body>
+</html>
