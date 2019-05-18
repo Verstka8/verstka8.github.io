@@ -1,7 +1,7 @@
 //############################################
 // JQuery
 //############################################
-var $, Close_full_screen, Font_size, Full_screen, Lang_toggle, Language_active, Theme_dark, Theme_lite, allSlides, allSlidesLength, autoHover, back, clearIntervalMini, closeFullScreen, download_voice, fullScreen, full_screen, id, lang_name_mod_var, menu, menu_off, menu_toggle, next, numberNextSlide, options, parse_col, parse_only, parse_row, parse_slide, pause, print, rewind, rewind_pause, rewind_play, run, run_language, setI, slider, time;
+var $, Close_full_screen, Font_size, Full_screen, Lang_toggle, Language_active, Test2, Theme_dark, Theme_lite, allSlides, allSlidesLength, autoHover, back, clearIntervalMini, closeFullScreen, download_voice, fullScreen, full_screen, id, lang_name_mod_var, menu, menu_off, menu_toggle, next, numberNextSlide, options, parse_col, parse_only, parse_row, parse_slide, pause, print, rewind, rewind_pause, rewind_play, run, run_language, setI, slider, time;
 
 $ = function(selector) {
   return document.querySelectorAll(selector);
@@ -113,19 +113,23 @@ parse_slide = function(arr) {
     val = arr[i];
     DOM_slide = document.createElement('div');
     DOM_slide.setAttribute('class', Object.keys(val)[0]);
-    if (Object.keys(val)[0] === 'html') {
+    if (Object.keys(val)[0].indexOf('html') > -1) {
       DOM_slide.innerHTML = val.html;
       slider.appendChild(DOM_slide);
     }
-    if (Object.keys(val)[0] === 'col') {
+    if (Object.keys(val)[0].indexOf('col') > -1) {
       slider.appendChild(parse_col(val, DOM_slide));
     }
-    if (Object.keys(val)[0] === 'line') {
+    if (Object.keys(val)[0].indexOf('block') > -1) {
+      slider.appendChild(parse_col(val, DOM_slide));
+    }
+    if (Object.keys(val)[0].indexOf('line') > -1) {
       slider.appendChild(parse_row(val, DOM_slide));
     } else {
       slider.appendChild(parse_only(val, DOM_slide));
     }
   }
+  Test();
 };
 
 parse_col = function(obj, DOM_slide) {
@@ -222,7 +226,7 @@ run = function(number) {
       if (this_voice) {
         setTimeout(() => {
           return this_voice.play();
-        }, 1000);
+        }, 500);
       }
     }
   }
@@ -317,7 +321,8 @@ Lang_toggle = function(Lang) {
     Support: 'Support',
     Author: 'Author',
     Light: 'Light',
-    Dark: 'Dark'
+    Dark: 'Dark',
+    Font: 'Font'
   };
   RU = {
     Language: 'Язык',
@@ -326,7 +331,8 @@ Lang_toggle = function(Lang) {
     Support: 'Поддержка',
     Author: 'Автор',
     Light: 'Светлая',
-    Dark: 'Темная'
+    Dark: 'Темная',
+    Font: 'Шрифт'
   };
   SPA = {
     Language: 'Idioma',
@@ -335,7 +341,8 @@ Lang_toggle = function(Lang) {
     Support: 'Apoyo',
     Author: 'Autor',
     Light: 'Ligero',
-    Dark: 'Oscuro'
+    Dark: 'Oscuro',
+    Font: 'Fuente'
   };
   ZHO = {
     Language: '语言',
@@ -344,7 +351,8 @@ Lang_toggle = function(Lang) {
     Support: '支持',
     Author: '作者',
     Light: '光',
-    Dark: '黑'
+    Dark: '黑',
+    Font: '字形'
   };
   lang_name_mod_var = Lang;
   Lang_apply = function(obj) {
@@ -412,3 +420,19 @@ Font_size = function(size) {
 };
 
 Font_size();
+
+Test2 = function() {
+  var correctly, correctlys, i, j, len, len1, results, wrong, wrongs;
+  correctlys = document.querySelectorAll('.correctly');
+  wrongs = document.querySelectorAll('.wrong');
+  for (i = 0, len = correctlys.length; i < len; i++) {
+    correctly = correctlys[i];
+    correctly.addEventListener('click', correctly_func);
+  }
+  results = [];
+  for (j = 0, len1 = wrongs.length; j < len1; j++) {
+    wrong = wrongs[j];
+    results.push(wrong.addEventListener('click', wrong_func));
+  }
+  return results;
+};
