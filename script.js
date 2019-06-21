@@ -1,7 +1,7 @@
 //############################################
 // JQuery
 //############################################
-var $, Close_full_screen, Font_size, Full_screen, Lang_toggle, Language_active, Test2, Theme_dark, Theme_lite, allSlides, allSlidesLength, autoHover, back, clearIntervalMini, closeFullScreen, download_voice, fullScreen, full_screen, id, lang_name_mod_var, menu, menu_off, menu_toggle, next, numberNextSlide, options, parse_col, parse_only, parse_row, parse_slide, pause, print, rewind, rewind_pause, rewind_play, run, run_language, setI, slider, time;
+var $, Close_full_screen, Font_size, Full_screen, Lang_toggle, Language_active, Test2, Theme_dark, Theme_lite, allSlides, allSlidesLength, autoHover, back, clearIntervalMini, closeFullScreen, download_voice, fullScreen, full_screen, id, lang_name_mod_var, menu, menu_off, menu_toggle, next, numberNextSlide, options, parse_array, parse_row, parse_slide, pause, print, rewind, rewind_pause, rewind_play, run, run_language, setI, slider, time;
 
 $ = function(selector) {
   return document.querySelectorAll(selector);
@@ -80,15 +80,20 @@ clearIntervalMini = function() {
   }, time);
 };
 
+if (localStorage.fontFamily) {
+  slider.style.fontFamily = localStorage.fontFamily;
+  fontInput.value = localStorage.fontFamily;
+}
+
 //#####################################
-run_language = function(language) {
-  var button_rewind, globalStyle, i_b_r, key, results, val;
-  //gEval('language = ' + lang + '_' + lang_mod_var)
+run_language = function(langCSOM) {
+  var button_rewind, globalStyle, i_b_r, key, language, results, val;
+  language = SlidesParser(langCSOM);
   numberNextSlide = -1;
   allSlides = language;
   allSlidesLength = language.length;
   globalStyle = document.createElement('style');
-  globalStyle.innerHTML = allSlides[0].slide.globalStyle;
+  globalStyle.innerHTML = allSlides[0].globalStyle;
   menu.appendChild(globalStyle);
   time = 88;
   id('rewind').innerHTML = '';
@@ -114,57 +119,45 @@ parse_slide = function(arr) {
     DOM_slide = document.createElement('div');
     DOM_slide.setAttribute('class', Object.keys(val)[0]);
     if (Object.keys(val)[0].indexOf('html') > -1) {
-      DOM_slide.innerHTML = val.html;
+      DOM_slide.innerHTML = val[Object.keys(val)[0]];
       slider.appendChild(DOM_slide);
-    }
-    if (Object.keys(val)[0].indexOf('col') > -1) {
-      slider.appendChild(parse_col(val, DOM_slide));
-    }
-    if (Object.keys(val)[0].indexOf('block') > -1) {
-      slider.appendChild(parse_col(val, DOM_slide));
-    }
-    if (Object.keys(val)[0].indexOf('line') > -1) {
-      slider.appendChild(parse_row(val, DOM_slide));
     } else {
-      slider.appendChild(parse_only(val, DOM_slide));
+      slider.appendChild(parse_row(val, DOM_slide));
     }
   }
   Test();
-};
-
-parse_col = function(obj, DOM_slide) {
-  var DOM_col, i, key, len, val, val2;
-  for (key in obj) {
-    val = obj[key];
-    for (i = 0, len = val.length; i < len; i++) {
-      val2 = val[i];
-      DOM_col = document.createElement('div');
-      DOM_col.setAttribute('class', Object.keys(val2)[0]);
-      DOM_slide.appendChild(parse_row(val2, DOM_col));
-    }
-  }
-  // console.log DOM_slide
-  return DOM_slide;
 };
 
 parse_row = function(arr_obj, DOM_col) {
   var div, i, key, key0, len, val, val2, val3;
   for (key0 in arr_obj) {
     val2 = arr_obj[key0];
-    for (i = 0, len = val2.length; i < len; i++) {
-      val3 = val2[i];
-      for (key in val3) {
-        val = val3[key];
-        if (key.substring(0, 4) === 'html') {
-          div = document.createElement('div');
-          div.setAttribute('class', key);
-          div.innerHTML = val;
-          DOM_col.appendChild(div);
-        } else {
-          div = document.createElement('div');
-          div.setAttribute('class', key);
-          div.textContent = val;
-          DOM_col.appendChild(div);
+    console.log(val2);
+    if (typeof val2 === 'string') {
+      div = document.createElement('div');
+      div.setAttribute('class', key0);
+      div.textContent = val2;
+      DOM_col.appendChild(div);
+    } else {
+      for (i = 0, len = val2.length; i < len; i++) {
+        val3 = val2[i];
+        for (key in val3) {
+          val = val3[key];
+          if (key.substring(0, 4) === 'html') {
+            div = document.createElement('div');
+            div.setAttribute('class', key);
+            div.innerHTML = val;
+            DOM_col.appendChild(div);
+          } else {
+            div = document.createElement('div');
+            div.setAttribute('class', key);
+            if (typeof val === 'object') {
+              div.appendChild = parse_array(val, div);
+            } else {
+              div.textContent = val;
+            }
+            DOM_col.appendChild(div);
+          }
         }
       }
     }
@@ -172,12 +165,24 @@ parse_row = function(arr_obj, DOM_col) {
   return DOM_col;
 };
 
-parse_only = function(obj, DOM_slide) {
-  var DOM_col, key, val;
-  for (key in obj) {
-    val = obj[key];
-    DOM_col = document.createElement('div');
-    DOM_col.setAttribute('class', Object.keys(key)[0]);
+parse_array = function(arr, DOM_slide) {
+  var DOM_div, i, key, len, obj, val;
+  for (i = 0, len = arr.length; i < len; i++) {
+    obj = arr[i];
+    for (key in obj) {
+      val = obj[key];
+      if (key.substring(0, 4) === 'html') {
+        DOM_div = document.createElement('div');
+        DOM_div.setAttribute('class', key);
+        DOM_div.innerHTML = val;
+        DOM_slide.appendChild(DOM_div);
+      } else {
+        DOM_div = document.createElement('div');
+        DOM_div.setAttribute('class', key);
+        DOM_div.textContent = val;
+        DOM_slide.appendChild(DOM_div);
+      }
+    }
   }
   return DOM_slide;
 };
@@ -195,11 +200,11 @@ next = function() {
 
 download_voice = function(numberSlideVoice) {
   var numberSlideVoiceNext;
-  load_voice(allSlides[numberSlideVoice].slide.voice);
+  load_voice(allSlides[numberSlideVoice].voice);
   numberSlideVoiceNext = numberSlideVoice;
   numberSlideVoiceNext++;
   if (numberSlideVoiceNext < allSlidesLength) {
-    return load_voice(allSlides[numberSlideVoiceNext].slide.voice);
+    return load_voice(allSlides[numberSlideVoiceNext].voice);
   }
 };
 
@@ -213,16 +218,15 @@ run = function(number) {
     if (numberNextSlide >= 0) {
       rewind_play.style.display = 'none';
       rewind_pause.style.display = 'block';
-      time = allSlides[numberNextSlide].slide.time;
+      time = allSlides[numberNextSlide].time;
       clearIntervalMini();
-      // console.log allSlides[numberNextSlide].slide.time
-      parse_slide(allSlides[numberNextSlide].slide.see);
+      parse_slide(allSlides[numberNextSlide].see);
       autoHover(numberNextSlide);
       download_voice(numberNextSlide);
       if (this_voice) {
         this_voice.stop();
       }
-      gEval('this_voice = ' + allSlides[numberNextSlide].slide.voice);
+      gEval('this_voice = ' + allSlides[numberNextSlide].voice);
       if (this_voice) {
         setTimeout(() => {
           return this_voice.play();
@@ -317,42 +321,50 @@ Lang_toggle = function(Lang) {
   EN = {
     Language: 'Language',
     Theme: 'Theme',
+    Light: 'Light',
+    Dark: 'Dark',
+    Download: 'Download',
     Font_size: 'Font size',
     Support: 'Support',
     Author: 'Author',
-    Light: 'Light',
-    Dark: 'Dark',
-    Font: 'Font'
+    Font: 'Font',
+    Account: 'Account'
   };
   RU = {
     Language: 'Язык',
     Theme: 'Тема',
     Font_size: 'Размер шрифта',
-    Support: 'Поддержка',
-    Author: 'Автор',
     Light: 'Светлая',
     Dark: 'Темная',
-    Font: 'Шрифт'
+    Font: 'Шрифт',
+    Download: 'Скачать',
+    Support: 'Поддержка',
+    Author: 'Автор',
+    Account: 'Аккаунт'
   };
   SPA = {
     Language: 'Idioma',
     Theme: 'Tema',
     Font_size: 'Tamaño de fuente',
-    Support: 'Apoyo',
-    Author: 'Autor',
     Light: 'Ligero',
     Dark: 'Oscuro',
-    Font: 'Fuente'
+    Download: 'Descargar',
+    Support: 'Apoyo',
+    Author: 'Autor',
+    Font: 'Fuente',
+    Account: 'Cuenta'
   };
   ZHO = {
     Language: '语言',
     Theme: '主题',
-    Font_size: '字体大小',
-    Support: '支持',
-    Author: '作者',
     Light: '光',
     Dark: '黑',
-    Font: '字形'
+    Font_size: '字体大小',
+    Download: '下載',
+    Support: '支持',
+    Author: '作者',
+    Font: '字形',
+    Account: '帳戶'
   };
   lang_name_mod_var = Lang;
   Lang_apply = function(obj) {
