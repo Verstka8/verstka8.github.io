@@ -42,20 +42,6 @@ slide:
 	time: 6000
 slide:
 	see:
-		h1 text: Полезные ссылки
-		line html: <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">"Mozilla Developer N web docs" - Веб документация.</a>
-		line html: <a href="https://html5book.ru/">"HTML5 BOOK" - Учебник</a>
-		line html: <a href="http://htmlbook.ru/">"HTML book" - Учебник</a>
-		line html: <a href="https://codebra.ru/">"CODEBRA" - Учебник с практикой</a>
-		line html: <a href="www.cyberforum.ru/">"CyberForum" - Форум</a>
-		line html: <a href="https://ru.stackoverflow.com/">"StackOverflow" - Форум</a>
-		line html: <a href="http://programmersforum.ru/">"Клуб ПРОграммистов" - Форум</a>
-		line html: <a href="http://forum.vingrad.ru/">"VINGRAD" - Форум</a>
-		line html: <a href="http://www.html.by/">"HTML" - Форум</a>
-	voice: HTML_RU_Hello_World
-	time: 6000
-slide:
-	see:
 		line h1: Переменные
 		line text: Переменная — именованная часть памяти, в которую могут помещаться разные значения.
 		code:
@@ -295,6 +281,20 @@ slide:
 				text: текст
 				number: 1
 		w-100:
+	voice: HTML_RU_Hello_World
+	time: 6000
+slide:
+	see:
+		h1 text: Полезные ссылки
+		line html: <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript">"Mozilla Developer N web docs" - Веб документация.</a>
+		line html: <a href="https://html5book.ru/">"HTML5 BOOK" - Учебник</a>
+		line html: <a href="http://htmlbook.ru/">"HTML book" - Учебник</a>
+		line html: <a href="https://codebra.ru/">"CODEBRA" - Учебник с практикой</a>
+		line html: <a href="www.cyberforum.ru/">"CyberForum" - Форум</a>
+		line html: <a href="https://ru.stackoverflow.com/">"StackOverflow" - Форум</a>
+		line html: <a href="http://programmersforum.ru/">"Клуб ПРОграммистов" - Форум</a>
+		line html: <a href="http://forum.vingrad.ru/">"VINGRAD" - Форум</a>
+		line html: <a href="http://www.html.by/">"HTML" - Форум</a>
 	voice: HTML_RU_Hello_World
 	time: 6000
 slide:
