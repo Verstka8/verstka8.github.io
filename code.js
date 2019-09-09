@@ -1,35 +1,3 @@
-
-const HTML_EN_code1 = `<div onclick="run(1)" class="text a pointer">Basics</div>
-<div onclick="run(6)" class="text a pointer">Test</div>
-<div onclick = "run(2)" class="text a pointer" >Practice</div>`
-const HTML_RU_code1 = `<div onclick="run(1)" class="text a pointer">Основы</div>
-<div onclick="run(6)" class="text a pointer">Тести</div>
-<div onclick = "run(6)" class="text a pointer" >Практика</div>`
-const HTML_RU_code2 = `<html>
-	<head>
-		<title>title</title>
-	</head>
-	<body>
-		<div>Привет мир</div>
-	</body>
-</html>`
-const HTML_RU_code3 = `<html>
-	<head>
-		<title>Практика</title>
-	</head>
-	<body>
-		<nav>
-			<a href="#">Главна</a>	
-			<a href="#">Продукты</a>	
-			<a href="#">О нас</a>	
-		</nav>
-		<hr>
-		<h1>Ну очень простой сайт</h1>
-		<p>Для более красивого дизайна нужно изучить CSS.</p>
-		<p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты.</p>
-		<a href="#">Ссылка на другую страницу</a>	
-	</body>
-</html>`
 const supportSlide = [{'html m-auto': `<div class="mt-5 h-50" id="supportHistory">Sorry support, authorization in development...</div>
 	<input type="text" class="form-control mt-2" id="supportInput" placeholder="Your question">
 	<style>.Theme_dark #supportInput { background: #000; color: #fff; }#supportInput, #supportHistory{margin: auto}<style>`}]
@@ -82,7 +50,6 @@ function Test() {
 function copyCode() {
 	navigator.clipboard.writeText(allSlides[numberNextSlide].copyCode)
  }
-console.log('Привет мир')
 let fontInput = document.getElementById('FontInput');
 fontInput.oninput = function() {
 	slider.style.fontFamily = fontInput.value

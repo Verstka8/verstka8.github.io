@@ -124,13 +124,14 @@ slide:
 	see:
 		line h1: Массивы
 		code w-100:
+			comment: // синтаксис
 			line:
 				text: [
 				str: значения
 				oper: ,
 				str:  значения
 				text: ]
-			comment: // синтаксис
+			comment: // масcив с разными данными
 			line:
 				text: [
 				str: "Строка"
@@ -143,7 +144,6 @@ slide:
 				oper: , 
 				text: {}
 				text: ]
-			comment: // масcив с разными данными
 			line:
 				func: var
 				text:  array
@@ -190,6 +190,7 @@ slide:
 	see:
 		line h1: Объекты
 		code w-100:
+			comment: // синтаксис
 			line:
 				text: {
 				str: ключ
@@ -200,7 +201,7 @@ slide:
 				text: :
 				str:  значения
 				text: }
-			comment: // синтаксис
+			comment: // объект с разными данными
 			line:
 				text: {
 				str: "key1"
@@ -223,7 +224,6 @@ slide:
 				text: :
 				text:  {}
 				text: }
-			comment: // объект с разными данными
 			line:
 				func: var
 				text:  object
@@ -271,18 +271,110 @@ slide:
 slide:
 	see:
 		line h1: Строки
-		line text: 
-		col:
+		code w-100:
 			line:
-				name: body
-				oper: =
-				func: class
-				str: "className"
-				text: текст
-				number: 1
-		w-100:
+				str: 'Text'
+			line:
+				str: "Text"
+			line:
+				str: \`Text\`
 	voice: HTML_RU_Hello_World
 	time: 6000
+slide:
+	see:
+		line h1: Условные операторы
+		code w-100:
+			line:
+				comment:  // синтаксис оператора if
+			line:
+				func: if
+				text:  (
+				text: условие/выражения
+				text: )
+			line:
+				text: 	инструкция/код
+			line:
+				comment:  // синтаксис оператора if с 2 и больше инструкциями
+			line:
+				func: if
+				text:  (
+				text: условие/выражения
+				text: )
+				text:  {
+			line:
+				text: 	инструкция/код
+			line:
+				text: 	инструкция/код
+			line:
+				text:  }
+			line:
+				comment:  // синтаксис оператора if else
+			line:
+				func: if
+				text:  (
+				text: условие/выражения
+				text: )
+			line:
+				text: 	инструкция/код
+			line:
+				func: else
+			line:
+				text: 	инструкция/код
+			line:
+				comment:  // синтаксис оператора if else с 2 и больше инструкциями
+			line:
+				func: if
+				text:  (
+				text: условие/выражения
+				text: ) {
+			line:
+				text: 	инструкция/код
+			line:
+				text: 	инструкция/код
+			line:
+				text: }
+				func:  else
+				text:  {
+			line:
+				text: 	инструкция/код
+			line:
+				text: 	инструкция/код
+			line:
+				text:  }
+			line:
+				comment:  // пример
+			line:
+				func: var
+				text:  a
+				oper:  =
+				number:  1
+				oper: ,
+				text:  b
+				oper:  =
+				number:  2
+			line:
+				func: if
+				text:  (
+				text: a
+				oper:  >
+				text:  b
+				text: ) {
+			line:
+				text: 	инструкция/код
+			line:
+				text: 	инструкция/код
+			line:
+				text: }
+				func:  else
+				text:  {
+			line:
+				text: 	инструкция/код
+			line:
+				text: 	инструкция/код
+			line:
+				text:  }
+	voice: HTML_RU_Hello_World
+	time: 19000
 slide:
 	see:
 		h1 text: Полезные ссылки
